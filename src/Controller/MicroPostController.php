@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Form\MicroPostType;
 use Doctrine\ORM\EntityManagerInterface;
 
 class MicroPostController extends AbstractController
@@ -34,11 +34,7 @@ class MicroPostController extends AbstractController
     #[Route('/micro-post/add', name: 'app_micro_post_add', priority: 2)]
     public function add(Request $request, MicroPostRepository $posts, EntityManagerInterface $em): Response
     {
-        $microPost = new MicroPost();
-        $form = $this->createFormBuilder($microPost)
-            ->add('title')
-            ->add('text')
-            ->getForm();
+        $form = $this->createForm(MicroPostType::class, new MicroPost());
 
         $form->handleRequest($request);
 
@@ -68,10 +64,7 @@ class MicroPostController extends AbstractController
     #[Route('/micro-post/{post}/edit', name: 'app_micro_post_edit')]
     public function edit(MicroPost $post, Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createFormBuilder($post)
-            ->add('title')
-            ->add('text')
-            ->getForm();
+        $form = $this->createForm(MicroPostType::class, $post);
 
         $form->handleRequest($request);
 
