@@ -43,20 +43,23 @@ class AppFixtures extends Fixture
         $microPost1->setText('Welcome to Poland!');
         $microPost1->setCreated(new DateTime());
         $microPost1->setAuthor($user1);
+        $microPost1->setExtraPrivacy(false);
         $manager->persist($microPost1);
 
         $microPost2 = new MicroPost();
         $microPost2->setTitle('Welcome to US!');
         $microPost2->setText('Welcome to US!');
         $microPost2->setCreated(new DateTime());
-        $microPost1->setAuthor($user2);
+        $microPost2->setAuthor($user2);
+        $microPost2->setExtraPrivacy(false);
         $manager->persist($microPost2);
 
         $microPost3 = new MicroPost();
         $microPost3->setTitle('Welcome to Germany!');
         $microPost3->setText('Welcome to Germany!');
         $microPost3->setCreated(new DateTime());
-        $microPost1->setAuthor($user1);
+        $microPost3->setAuthor($user1);
+        $microPost3->setExtraPrivacy(false);
         $manager->persist($microPost3);
 
         // Activate via: symfony console doctrine:fixtures:load

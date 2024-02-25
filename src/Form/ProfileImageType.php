@@ -22,7 +22,8 @@ class ProfileImageType extends AbstractType
                         'maxSize' => '1024k',
                         'mimeTypes' => [
                             'image/jpeg',
-                            'image/png'
+                            'image/png',
+                            'image/jpg'
                         ],
                         'mimeTypesMessage' => 'Please upload a valid PNG/JPEG image'
                     ])
@@ -34,6 +35,7 @@ class ProfileImageType extends AbstractType
     {
         $resolver->setDefaults([
             // Configure your form options here
+            'data_class' => ProfileImageType::class,
         ]);
     }
 }

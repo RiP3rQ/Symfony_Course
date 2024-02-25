@@ -91,6 +91,12 @@ class SettingsProfileController extends AbstractController
                         $newFileName
                     );
                 } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                    $this->addFlash(
+                        'error',
+                        'An error occurred while uploading the profile image.'
+                    );
+                    return $this->redirectToRoute('app_settings_profile_image');
                 }
 
                 $profile = $user->getUserProfile() ?? new UserProfile();
