@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\MicroPost;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -58,6 +59,22 @@ class MicroPostRepository extends ServiceEntityRepository
         }
 
         return $query->orderBy('p.created', 'DESC');
+    }
+
+    public function findAllByAuthor(
+        int | User $author
+    ): array {
+        return $this->findAllQuery(
+            withComments: true,
+            withLikes: true,
+            withAuthors: true,
+            withProfiles: true
+        )->where('p.author = :author')
+            ->setParameter(
+                'author',
+                $author instanceof User ? $author->getId() : $author
+            )->getQuery()
+            ->getResult();
     }
 
     //    /**
