@@ -53,6 +53,8 @@
             Enter more (optional) deatils about yourself. You can do it later.
         </div>
 
+        {{ include ('/settings_profile/_profile_form.html.twig', { form: registrationForm.userProfile }) }}
+
         <div>
             <button type="submit" 
                 class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">Register</button>
