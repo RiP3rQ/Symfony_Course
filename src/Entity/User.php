@@ -54,6 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $bannedUntil = null;
 
     #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'followers')]
+    #[ORM\JoinTable('followers')]
     private Collection $follows;
 
     #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'follows')]
